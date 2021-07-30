@@ -6,20 +6,104 @@
     <title>Test</title>
 </head>
 
-<body>
-    <textarea id="in" rows="10" cols="100" autofocus style="resize: none;" onchange=get()></textarea>
-    <textarea id="out" rows="10" cols="100" autofocus style="resize: none;" readonly></textarea>
-</body>
+<div class="column">
+    <div class="column"><label for="input">Input</label><textarea placeholder="Input" rows="20"
+            name="input" id="input"></textarea></div>
+    <div class="column"><label for="output">Output</label><textarea placeholder="Output" rows="20"
+            name="output" id="output"></textarea></div>
+</div>
+
+<style type="text/css">
+    html {
+        line-height: 1.15;
+        -webkit-text-size-adjust: 100%;
+        box-sizing: border-box;
+        font-size: 62.5%
+    }
+
+    body {
+        margin: 0;
+        color: #606c76;
+        font-family: Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 1.6em;
+        font-weight: 300;
+        letter-spacing: .01em;
+        line-height: 1.6
+    }
+
+    textarea {
+        font-family: inherit;
+        font-size: 100%;
+        line-height: 1.15;
+        margin: 0;
+        overflow: auto;
+        -webkit-appearance: none;
+        background-color: transparent;
+        border: .1rem solid #d1d1d1;
+        border-radius: .4rem;
+        box-shadow: none;
+        box-sizing: inherit;
+        height: 3.8rem;
+        padding: .6rem 1rem .7rem;
+        width: 100%;
+        min-height: 20rem;
+        resize: none;
+        background: #fff;
+        margin-bottom: 1.5rem
+    }
+
+    textarea:focus {
+        border-color: #9b4dca;
+        outline: 0
+    }
+
+    label {
+        display: block;
+        font-size: 1.6rem;
+        font-weight: 700;
+        margin-bottom: .5rem;
+        text-align: center
+    }
+
+    .row {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 0
+    }
+
+    .row .column {
+        display: block;
+        flex: 1 1 auto;
+        margin-left: 0;
+        max-width: 100%;
+        width: 100%
+    }
+
+    @media (min-width:40rem) {
+        .row {
+            flex-direction: row;
+            margin-left: -1rem;
+            width: calc(100% + 2rem)
+        }
+
+        .row .column {
+            margin-bottom: inherit;
+            padding: 0 1rem
+        }
+    }
+</style>
 
 <script>
     function get() {
         out_text = ''
-        for (i = 0; i < document.querySelector("#in").value.length; i++) {
-            out_text += document.querySelector("#in").value[i] += '\uFEFF'
+        for (i = 0; i < document.querySelector("#input").value.length; i++) {
+            out_text += document.querySelector("#input").value[i] += '\uFEFF'
         }
         navigator.clipboard.writeText(out_text)
-        document.querySelector("#out").value = out_text
+        document.querySelector("#output").value = out_text
     }
+    document.getElementById("input").addEventListener("change", get)
 </script>
 
 </html>
